@@ -1,35 +1,57 @@
-<nz-layout>
-    <nz-header class="header" fxLayout="row" fxLayoutAlign="space-between">
-      <div class="logo" fxFlex="25">
-        <img src="/assets/logo.svg">
-        <img src="/assets/zorro.svg">
+<nz-layout fxLayout="column" fxLayoutGap="10px">
+  <nz-header class="header" fxLayout="row" fxLayoutAlign="space-between">
+    <div class="logo" fxFlex="25">
+      <img src="/assets/logo.svg">
+      <img src="/assets/zorro.svg">
+    </div>
+    <ul class="user-nav" fxLayout="row" fxLayoutGap="10px">
+      <li *ngIf="!authService.isLoggedIn">
+        <a routerLink="login" nz-button nzType="dashed">Sign in</a>
+      </li>
+      <li *ngIf="authService.isLoggedIn">
+        <nz-dropdown nzPlacement="bottomRight">
+          <nz-avatar class="user-avatar" nzSize="small" [nzText]="user.userName.slice(0,1)" nz-dropdown>
+          </nz-avatar>
+          <ul nz-menu nzSelectable [style.minWidth.px]="100">
+            <li class="dropdown-header">Signed in as {{user.userName}}</li>
+            <li nz-menu-item>
+              <a routerLink="main">Main</a>
+            </li>
+            <li nz-menu-item>
+              <a (click)="signOut()">Sign out</a>
+            </li>
+          </ul>
+        </nz-dropdown>
+      </li>
+    </ul>
+  </nz-header>
+  <nz-content fxLayout="column" fxLayoutGap="10px">
+    <nz-carousel class="carousel" [style.width.px]="innerWidth" nzAutoPlay>
+      <div nz-carousel-content [style.backgroundColor]="i" *ngFor="let i of ['#f44336', '#E91E62', '#9C27B0', '#673AB7', '#3F51B5']">
       </div>
-      <ul class="user-nav" fxLayout="row" fxLayoutGap="10px">
-        <li *ngIf="!authService.isLoggedIn">
-          <a routerLink="login" nz-button nzType="dashed">Sign in</a>
-        </li>
-        <li *ngIf="authService.isLoggedIn">
-          <nz-dropdown nzPlacement="bottomRight">
-            <nz-avatar class="user-avatar" nzSize="small" [nzText]="user.userName.slice(0,1)" nz-dropdown>
-            </nz-avatar>
-            <ul nz-menu nzSelectable [style.minWidth.px]="100">
-              <li class="dropdown-header">Signed in as {{user.userName}}</li>
-              <li nz-menu-item>
-                <a routerLink="main">Main</a>
-              </li>
-              <li nz-menu-item>
-                <a (click)="signOut()">Sign out</a>
-              </li>
-            </ul>
-          </nz-dropdown>
-        </li>
-      </ul>
-    </nz-header>
-    <nz-content>
-      <nz-carousel class="carousel" [style.width.px]="innerWidth" nzAutoPlay>
-        <div nz-carousel-content *ngFor="let index of array">
-          <img src="/assets/banner_{{index}}.jpg">
-        </div>
-      </nz-carousel>
-    </nz-content>
-  </nz-layout>
+    </nz-carousel>
+    <div class="card-list" fxLayout="row wrap" fxLayoutAlign="space-evenly">
+      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
+        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+      </nz-card>
+      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
+        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+      </nz-card>
+      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
+        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+      </nz-card>
+      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
+        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+      </nz-card>
+      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
+        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+      </nz-card>
+      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate" fxFlexAlign="start">
+        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+      </nz-card>
+      <ng-template #coverTemplate>
+        <img alt="example" src="http://placehold.it/150/771796" />
+      </ng-template>
+    </div>
+  </nz-content>
+</nz-layout>

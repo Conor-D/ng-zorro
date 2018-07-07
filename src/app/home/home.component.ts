@@ -7,7 +7,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
-  array = [ 1, 2, 3, 4, 5];
+  cardList = [112];
   innerWidth = window.innerWidth;
   constructor(private authService: AuthService) {}
 
