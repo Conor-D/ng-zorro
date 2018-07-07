@@ -1,0 +1,35 @@
+<nz-layout>
+    <nz-header class="header" fxLayout="row" fxLayoutAlign="space-between">
+      <div class="logo" fxFlex="25">
+        <img src="/assets/logo.svg">
+        <img src="/assets/zorro.svg">
+      </div>
+      <ul class="user-nav" fxLayout="row" fxLayoutGap="10px">
+        <li *ngIf="!authService.isLoggedIn">
+          <a routerLink="login" nz-button nzType="dashed">Sign in</a>
+        </li>
+        <li *ngIf="authService.isLoggedIn">
+          <nz-dropdown nzPlacement="bottomRight">
+            <nz-avatar class="user-avatar" nzSize="small" [nzText]="user.userName.slice(0,1)" nz-dropdown>
+            </nz-avatar>
+            <ul nz-menu nzSelectable [style.minWidth.px]="100">
+              <li class="dropdown-header">Signed in as {{user.userName}}</li>
+              <li nz-menu-item>
+                <a routerLink="main">Main</a>
+              </li>
+              <li nz-menu-item>
+                <a (click)="signOut()">Sign out</a>
+              </li>
+            </ul>
+          </nz-dropdown>
+        </li>
+      </ul>
+    </nz-header>
+    <nz-content>
+      <nz-carousel class="carousel" [style.width.px]="innerWidth" nzAutoPlay>
+        <div nz-carousel-content *ngFor="let index of array">
+          <img src="/assets/banner_{{index}}.jpg">
+        </div>
+      </nz-carousel>
+    </nz-content>
+  </nz-layout>

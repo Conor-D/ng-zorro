@@ -1,0 +1,62 @@
+<div class="login-wrap" nz-row nzType="flex" nzAlign="middle" nzJustify="center">
+  <form nz-form #f="ngForm" class="login-form" (ngSubmit)="signIn(f)">
+    <div class="login-form-message">
+      <span *ngIf="f.dirty && f.errors">
+        Invalid username and/or password :)
+      </span>
+    </div>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="anticon anticon-user">
+          <input 
+            type="text" 
+            spellcheck="false" 
+            autocomplete="off" 
+            required 
+            nz-input 
+            ngModel 
+            name="userName" 
+            #userName="ngModel" 
+            placeholder="Username">
+        </nz-input-group>
+        <nz-form-explain *ngIf="userName.dirty && userName.errors">Please input your username!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group nzPrefixIcon="anticon anticon-lock">
+          <input 
+            type="password" 
+            required 
+            nz-input 
+            ngModel 
+            name="password" 
+            #password="ngModel" 
+            placeholder="Password">
+        </nz-input-group>
+        <nz-form-explain *ngIf="password.dirty && password.errors">Please input your Password!</nz-form-explain>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control>
+        <label nz-checkbox ngModel name="remember">
+          <span>Remember me</span>
+        </label>
+        <a class="login-form-forgot" class="login-form-forgot">Forgot password</a>
+        <button 
+          class="login-form-button" 
+          nz-button
+          [disabled]="f.invalid"
+          [nzLoading]="isLogining" 
+          [nzType]="'primary'">
+          Log in
+        </button>
+        <nz-divider class="register" nzOrientation="right" [nzText]="text">
+          <ng-template #text>
+            <a routerLink="">register now</a>
+          </ng-template>
+        </nz-divider>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>

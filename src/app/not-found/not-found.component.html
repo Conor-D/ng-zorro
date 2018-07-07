@@ -1,0 +1,52 @@
+<style>
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  .container {
+    border: 6px solid #000;
+    display: flex;
+
+  }
+
+  .item {
+    padding: 15px;
+  }
+
+  .item-1 {
+    background: red;
+    min-width: 150px;
+    flex: 1 0;
+  }
+
+  .item-2 {
+    background: orange;
+    flex: 8 1;
+  }
+
+  .item-3 {
+    background: gray;
+  }
+
+  .item-4 {
+    background: pink;
+  }
+
+  .item-5 {
+    background: blue;
+  }
+</style>
+<div style="display: flex;width:200px;">
+  <img src="../../assets/logo.svg" alt="">
+  <img src="../../assets/zorro.svg" alt="">
+</div>
+<div class="container">
+  <p>
+    -50 (1) [ 0  (1)  50 (1) 100 (1) -50 (1)  0  (1)  50 (1) 100
+     50 (1) [100 (1) -50 (1)  0  (1)  50 (1) 100 (1) -50 (1)  0
+  </p>
+  <div class="item item-1">Item 1</div>
+  <div class="item item-2">Item 2</div>
+</div>
+<button (click)="click()">click</button>
