@@ -34,6 +34,7 @@ main .index-carousel .index-carousel-content {
 main .index-card-container {
   padding: 0 10px;
   max-width: 1280px;
+  width: 100%;
   margin: auto;
 }
 
