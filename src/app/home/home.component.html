@@ -1,19 +1,19 @@
-<nz-layout fxLayout="column" fxLayoutGap="10px">
-  <nz-header class="header" fxLayout="row" fxLayoutAlign="space-between">
-    <div class="logo" fxFlex="25">
-      <img src="/assets/logo.svg">
-      <img src="/assets/zorro.svg">
-    </div>
-    <ul class="user-nav" fxLayout="row" fxLayoutGap="10px">
+<header fxLayout fxLayoutAlign="start center">
+  <a class="header-brand" fxFlexOffset="5">
+    <img src="/assets/logo.svg">
+    <img fxFlexOffset="10px" fxFlexAlign="center" src="/assets/zorro.svg">
+  </a>
+  <nav fxFlex>
+    <ul fxLayoutAlign="end center">
       <li *ngIf="!authService.isLoggedIn">
-        <a routerLink="login" nz-button nzType="dashed">Sign in</a>
+        <a routerLink="login">Sign in</a>
       </li>
       <li *ngIf="authService.isLoggedIn">
         <nz-dropdown nzPlacement="bottomRight">
-          <nz-avatar class="user-avatar" nzSize="small" [nzText]="user.userName.slice(0,1)" nz-dropdown>
+          <nz-avatar class="user-avatar" [nzText]="user.userName.slice(0,1)" nzSize="small" nz-dropdown>
           </nz-avatar>
-          <ul nz-menu nzSelectable [style.minWidth.px]="100">
-            <li class="dropdown-header">Signed in as {{user.userName}}</li>
+          <ul class="user-menu" nz-menu nzSelectable>
+            <li class="user-menu-header">Signed in as {{user.userName}}</li>
             <li nz-menu-item>
               <a routerLink="main">Main</a>
             </li>
@@ -24,34 +24,30 @@
         </nz-dropdown>
       </li>
     </ul>
-  </nz-header>
-  <nz-content fxLayout="column" fxLayoutGap="10px">
-    <nz-carousel class="carousel" [style.width.px]="innerWidth" nzAutoPlay>
-      <div nz-carousel-content [style.backgroundColor]="i" *ngFor="let i of ['#f44336', '#E91E62', '#9C27B0', '#673AB7', '#3F51B5']">
+  </nav>
+  <div fxFlexOffset="5"></div>
+</header>
+<main fxLayout="column" fxLayoutGap="20px">
+  <section>
+    <nz-carousel class="index-carousel" [style.width.px]="innerWidth" nzAutoPlay>
+      <div class="index-carousel-content" nz-carousel-content [style.backgroundColor]="i" *ngFor="let i of ['#f44336', '#E91E62', '#9C27B0', '#673AB7', '#3F51B5']">
       </div>
     </nz-carousel>
-    <div class="card-list" fxLayout="row wrap" fxLayoutAlign="space-evenly">
-      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
-        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
-      </nz-card>
-      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
-        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
-      </nz-card>
-      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
-        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
-      </nz-card>
-      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
-        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
-      </nz-card>
-      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate">
-        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
-      </nz-card>
-      <nz-card nzHoverable fxFlex="0 0 150px" [nzCover]="coverTemplate" fxFlexAlign="start">
-        <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
-      </nz-card>
-      <ng-template #coverTemplate>
-        <img alt="example" src="http://placehold.it/150/771796" />
-      </ng-template>
-    </div>
-  </nz-content>
-</nz-layout>
+  </section>
+  <section class="index-card-container" fxLayout="row wrap">
+    <nz-card 
+      class="index-card" 
+      fxFlex.xs="0 0 calc(100% / 3 - 20px)" 
+      fxFlex.sm="0 0 calc(25% - 20px)" 
+      fxFlex="0 0 calc(100% / 6 - 20px)" 
+      *ngFor="let card of cardList" 
+      nzHoverable 
+      [nzCover]="coverTemplate">
+      <nz-card-meta nzTitle="Europe Street beat" nzDescription="www.instagram.com"></nz-card-meta>
+    </nz-card>
+    <ng-template #coverTemplate>
+      <img alt="example" src="http://placehold.it/150/771796" />
+    </ng-template>
+  </section>
+</main>
+<footer></footer>

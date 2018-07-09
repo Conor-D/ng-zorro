@@ -1,22 +1,23 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ErrorHandler } from '@angular/core';
-
-import { RoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { NgZorroAntdModule, NZ_I18N, zh_CN, en_US } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
-import zh from '@angular/common/locales/zh';
-import en from '@angular/common/locales/en';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import en from '@angular/common/locales/en';
+import zh from '@angular/common/locales/zh';
+
+import { NgZorroAntdModule, NZ_I18N, zh_CN, en_US } from 'ng-zorro-antd';
+import { RoutingModule } from './app-routing.module';
+import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { MainComponent } from './main/main.component';
 import { HomeComponent } from './home/home.component';
 import { NotFoundComponent } from './not-found/not-found.component';
 import { ErrorHandlerImpl } from './shared/error-handler-impl';
 import { InterceptorService } from './services/app-http-interceptor.service';
+import { SpinnerComponent } from './spinner/spinner.component';
 
 registerLocaleData(en);
 
@@ -26,7 +27,8 @@ registerLocaleData(en);
     LoginComponent,
     MainComponent,
     HomeComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    SpinnerComponent
   ],
   imports: [
     BrowserModule,
@@ -53,6 +55,7 @@ registerLocaleData(en);
       multi: true
     }
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [SpinnerComponent]
 })
 export class AppModule { }

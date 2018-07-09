@@ -1,5 +1,5 @@
 <div class="login-wrap" nz-row nzType="flex" nzAlign="middle" nzJustify="center">
-  <form nz-form #f="ngForm" class="login-form" (ngSubmit)="signIn(f)">
+  <form nz-form #f="ngForm" class="login-form" novalidate (ngSubmit)="signIn(f)">
     <div class="login-form-message">
       <span *ngIf="f.dirty && f.errors">
         Invalid username and/or password :)
@@ -48,9 +48,10 @@
           nz-button
           [disabled]="f.invalid"
           [nzLoading]="isLogining" 
-          [nzType]="'primary'">
+          nzType="primary">
           Log in
         </button>
+        <button type="reset" nzType="danger" nz-button>Reset</button>
         <nz-divider class="register" nzOrientation="right" [nzText]="text">
           <ng-template #text>
             <a routerLink="">register now</a>
