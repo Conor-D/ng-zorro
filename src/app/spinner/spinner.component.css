@@ -7,5 +7,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: rgba(0,0,0,.5);
+  background: linear-gradient(to left bottom, #673AB7, #3F51B5);
+  z-index: 9999;
 }

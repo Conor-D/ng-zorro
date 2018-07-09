@@ -1,20 +1,25 @@
-import { Injectable, ComponentFactoryResolver, Injector, ApplicationRef } from '@angular/core';
+import { Injectable, ComponentFactoryResolver, Injector, ApplicationRef, ComponentRef } from '@angular/core';
 import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SpinnerService {
-  isLoading: boolean;
+  spinner: HTMLElement;
+  spinnerRef: ComponentRef<SpinnerComponent>;
 
   constructor(private injector: Injector, private appRef: ApplicationRef, private resolver: ComponentFactoryResolver) {}
 
-  show() {
-    let spinner = document.createElement('spinner');
+  open() {
+    this.spinner = document.createElement('spinner');
     let factory = this.resolver.resolveComponentFactory(SpinnerComponent);
-    let spinnerRef = factory.create(this.injector, [], spinner);
-    this.appRef.attachView(spinnerRef.hostView);
+    this.spinnerRef = factory.create(this.injector, [], this.spinner);
+    this.appRef.attachView(this.spinnerRef.hostView);
+    document.body.appendChild(this.spinner);
+  }
 
-    document.body.appendChild(spinner);
+  close() {
+    document.body.removeChild(this.spinner);
+    this.appRef.detachView(this.spinnerRef.hostView);
   }
 }

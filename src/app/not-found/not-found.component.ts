@@ -17,7 +17,7 @@ export class NotFoundComponent implements OnInit {
   }
 
   click() {
-    this.spinner.show();
+    this.spinner.open();
     // this.http.get('https://stackoverflow.com/questions/35439672/angular-2-how-to-get-observable-throw-globally/35439805')
     //   .subscribe(data => {
     //     console.info(data);

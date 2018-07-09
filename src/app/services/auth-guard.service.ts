@@ -31,18 +31,20 @@ export class AuthGuard implements CanActivate {
     }
     return obs.pipe(
       tap(unexpired => {
-        unexpired || this.modal.warning({
-          nzTitle: 'Access Failed',
-          nzContent: ':) , ' + warnings,
-          nzOnOk: () => { this.router.navigate(['login'], { queryParams: { returnUrl: state.url } }); }
-        });
+        if (!unexpired) {
+          this.modal.warning({
+            nzTitle: 'Access Failed',
+            nzContent: ':) , ' + warnings
+          });
+          this.router.navigate(['login'], { queryParams: { returnUrl: state.url } }); 
+        }
       }),
       catchError(error => {
         this.modal.warning({
           nzTitle: 'Access Failed',
-          nzContent: ':) , ' + 'Request failed with code 401.',
-          nzOnOk: () => { this.router.navigate([''])}
+          nzContent: ':) , ' + 'Request failed with code 401.'
         });
+        this.router.navigate(['']);
         return throwError(error);
       })
     );
