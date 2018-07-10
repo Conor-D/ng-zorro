@@ -1,5 +1,5 @@
 :host {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
@@ -9,4 +9,5 @@
   align-items: center;
   background: linear-gradient(to left bottom, #673AB7, #3F51B5);
   z-index: 9999;
+  user-select: none;
 }

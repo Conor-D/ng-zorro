@@ -5,10 +5,10 @@
   </a>
   <nav fxFlex>
     <ul fxLayoutAlign="end center">
-      <li *ngIf="!authService.isLoggedIn">
+      <li *ngIf="!isLoggedIn">
         <a routerLink="login">Sign in</a>
       </li>
-      <li *ngIf="authService.isLoggedIn">
+      <li *ngIf="isLoggedIn">
         <nz-dropdown nzPlacement="bottomRight">
           <nz-avatar class="user-avatar" [nzText]="user.userName.slice(0,1)" nzSize="small" nz-dropdown>
           </nz-avatar>
@@ -29,7 +29,7 @@
 </header>
 <main fxLayout="column" fxLayoutGap="20px">
   <section>
-    <nz-carousel class="index-carousel" [style.width.px]="innerWidth" nzAutoPlay>
+    <nz-carousel class="index-carousel" nzAutoPlay>
       <div class="index-carousel-content" nz-carousel-content [style.backgroundColor]="i" *ngFor="let i of ['#f44336', '#E91E62', '#9C27B0', '#673AB7', '#3F51B5']">
       </div>
     </nz-carousel>

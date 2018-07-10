@@ -27,6 +27,12 @@ header nav .user-avatar {
   border-bottom: 1px solid #e8e8e8;
 }
 
+main .index-carousel {
+  width: calc(100vw - 17px);
+  height: 300px;
+  overflow: hidden;
+}
+
 main .index-carousel .index-carousel-content {
   height: 300px;
 }
