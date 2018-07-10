@@ -1,37 +1,50 @@
 import { Component } from '@angular/core';
-import { transition, style, animate, trigger } from '@angular/animations';
 
 @Component({
   selector: 'xw-progresser',
-  template: '',
+  template: `
+    <div [class.before]="beforeClass"></div>
+    <div [class.after]="afterClass"></div>
+  `,
   styles: [`
-    :host {
+    :host .before,
+    :host .after {
       position: fixed;
       top: 0;
+      opacity: 0;
       width: 50vw;
-      border-top: 3px solid #f5222d;
+      animation: progressing 2s linear infinite;
+      height: 2px;
+      background: linear-gradient(to left, #f5222d, #3F51B5);
     }
-  `],
-  host: {
-    '[@state]': 'state',
-    '(@state.done)': 'animationDone($event)'
-  },
-  animations: [
-    trigger('state', [
-      transition('* <=> *', [
-        style({
-          transform: 'translateX(-50vw)'
-        }),
-        animate('1s linear', style({
-          transform: 'translateX(100vw)'
-        }))
-      ])
-    ])    
-  ]
+
+    @keyframes progressing {
+      0% {
+        transform: translateX(-50vw)
+      }
+      25% {
+        transform: translateX(0vw);
+        opacity: 1;
+      }
+      50% {
+        transform: translateX(50vw)
+      }
+      75% {
+        transform: translateX(100vw)
+        opacity: 0;
+      }
+      100% {
+        transform: translateX(100vw)
+      }
+    }
+  `]
 })
 export class ProgresserComponent {
-  state = false;
-  animationDone() {
-    this.state = !this.state
+  beforeClass = false;
+  afterClass = false;
+
+  constructor() {
+    this.beforeClass = true;
+    setTimeout(() => this.afterClass = true, 1000);
   }
 }
