@@ -1,13 +1,12 @@
 :host {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   position: fixed;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   background: linear-gradient(to left bottom, #673AB7, #3F51B5);
   z-index: 9999;
-  user-select: none;
 }
